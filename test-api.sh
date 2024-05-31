@@ -29,6 +29,9 @@ apply_color() {
 # Fetch location data using ipinfo.io and curl
 location_data=$(curl -s https://ipinfo.io/json)
 
+# Fetch DNS Server
+dns_servers=$(cat /etc/resolv.conf | grep "nameserver" | awk '{print $2}')
+
 # Parse specific fields using jq
 ip=$(echo "$location_data" | jq -r '.ip')
 city=$(echo "$location_data" | jq -r '.city')
@@ -39,7 +42,7 @@ country=$(echo "$location_data" | jq -r '.country')
 echo "City: $city"
 echo "Region: $region"
 echo "Country: $country"
-
+echo "DNS Servers: $dns_servers"
 echo "Origin IP: $ip"
 echo "Destination IP: $dest_ip"
 echo "----------------"
