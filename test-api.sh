@@ -9,7 +9,6 @@ exec &> >(tee -a "$output_file")
 current_utc_time=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 echo "Script executed at: $current_utc_time"
 
-#read -r time_namelookup time_connect time_appconnect time_pretransfer time_redirect time_starttransfer time_total dest_ip <<<$(curl -L -s -o /dev/null -w "%{time_namelookup} %{time_connect} %{time_appconnect} %{time_pretransfer} %{time_redirect} %{time_starttransfer} %{time_total} %{remote_ip}" 'https://api-cn.travelgatex.com.'/)
 read -r time_namelookup time_connect time_appconnect time_pretransfer time_redirect time_starttransfer time_total dest_ip <<<$(curl -L -s -o /dev/null -w "%{time_namelookup} %{time_connect} %{time_appconnect} %{time_pretransfer} %{time_redirect} %{time_starttransfer} %{time_total} %{remote_ip}" 'https://api.travelgatex.com'/)
 
 apply_color() {
